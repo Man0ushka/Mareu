@@ -1,7 +1,6 @@
 package com.example.mareu.controller;
 
 import android.app.Activity;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -11,14 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpinnerController {
-    public static void setRoomListSpinner(List<Room> roomList, Spinner spinner, Activity activity)
-    {
+    public static void setRoomListSpinner(List<Room> roomList, Spinner spinner, Activity activity) {
         List<String> roomNames = new ArrayList<>();
-        for(Room room:roomList)
-        {
+        for (Room room : roomList) {
             roomNames.add(room.getName());
         }
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(activity.getApplicationContext(), android.R.layout.simple_spinner_item, roomNames);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(activity.getApplicationContext(), android.R.layout.simple_spinner_item, roomNames);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 

@@ -21,15 +21,10 @@
 
             <ImageView
                 android:id="@+id/item_list_avatar"
-
                 android:layout_width="56sp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-
-
-
-
                 android:src="@drawable/ic_baseline_lens_24" />
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/text_layout"
@@ -57,10 +52,7 @@
 
 
                     />
-                <!--app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="18sp"
-                    app:autoSizeMaxTextSize="30sp"
-                    app:autoSizeStepGranularity="2sp"-->
+
                 <TextView
                     android:id="@+id/item_list_participants"
                     android:layout_width="match_parent"
@@ -75,19 +67,8 @@
                     android:paddingRight="10dp"
                     android:gravity="center_vertical"
                     android:paddingBottom="2dp"
-
                     />
-                    <!--app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="16sp"
-                    app:autoSizeMaxTextSize="26sp"
-                    app:autoSizeStepGranularity="10sp"-->
-
-
-
-
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
             <ImageButton
                 android:id="@+id/item_list_delete_button"
@@ -97,15 +78,10 @@
                 android:background="@null"
                 android:scaleType="fitXY"
                 android:adjustViewBounds="true"
-
                 android:layout_gravity="center_vertical"
                 app:srcCompat="@drawable/ic_baseline_delete_24"
-                />
+                android:contentDescription="@string/remove_meeting" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

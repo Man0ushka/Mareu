@@ -5,10 +5,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
@@ -18,9 +16,9 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.mareu.DI.ServiceDI;
 import com.example.mareu.service.meetings.MeetingsApiService;
+import com.example.mareu.utils.DeleteViewAction;
 import com.example.mareu.view.add_meeting.AddMeeting;
 import com.example.mareu.view.list_meetings.ListMeetings;
-import com.example.mareu.utils.DeleteViewAction;
 import com.google.android.material.internal.CheckableImageButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -33,46 +31,35 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static com.adevinta.android.barista.interaction.BaristaMenuClickInteractions.clickMenu;
 import static com.adevinta.android.barista.interaction.BaristaMenuClickInteractions.openMenu;
 import static com.example.mareu.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 public class MeetingListInstrumentedTest {
-    private static int ITEMS_COUNT = 3;
 
     @Rule
     public final IntentsTestRule<ListMeetings> mActivityRule =
             new IntentsTestRule<>(ListMeetings.class);
 
-    private ListMeetings mActivity;
     private MeetingsApiService meetingsApiService;
 
     @Before
     public void setUp() {
-        mActivity = mActivityRule.getActivity();
+        ListMeetings mActivity = mActivityRule.getActivity();
         meetingsApiService = (MeetingsApiService) ServiceDI.getMeetingsApiService();
         assertThat(mActivity, notNullValue());
     }
@@ -153,7 +140,6 @@ public class MeetingListInstrumentedTest {
     @Test
     public void filterDate_shouldOnlyDisplaySelectedDate()
     {
-
         // Add meeting in room 5
         onView(ViewMatchers.withId(R.id.add_meeting_button)).perform(click());
         onView(ViewMatchers.withId(R.id.meeting_subject_text)).perform(replaceText("Date check"));

@@ -23,7 +23,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Sujet de la réunion"
+            android:hint="@string/meeting_subject_text"
             android:textColorHint="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/subjectInput"
@@ -31,12 +31,8 @@
             app:boxStrokeWidth="2dp"
             app:boxStrokeColor="@color/blue_principal"
             app:helperText="14 caractères max."
-
-
-
             >
 
-            >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/meeting_subject_text"
                 android:layout_width="match_parent"
@@ -53,7 +49,7 @@
                 android:id="@+id/add_participants_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Inviter des participants"
+                android:hint="@string/inviter_des_participants"
                 android:textColorHint="@color/black"
                 android:textAlignment="textStart"
                 app:layout_constraintTop_toBottomOf="@+id/subjectInput"
@@ -85,7 +81,7 @@
         <com.google.android.material.chip.ChipGroup
             app:singleLine="true"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:id="@+id/chipGroup"
             android:theme="@style/Theme.MaterialComponents.Light">
     </com.google.android.material.chip.ChipGroup>
@@ -104,7 +100,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/date_time_meeting_layout"
                 android:background="@color/white"
-                android:text="Début"
+                android:text="@string/debut_date_textview"
                 android:paddingStart="5dp"
                 android:paddingTop="5dp">
 
@@ -123,7 +119,7 @@
                     android:tag="StartDate"
                     android:id="@+id/date_btn_start"
                     android:textColor="@color/black"
-                    android:hint="Date de début"
+                    android:hint="@string/date_start_text"
                     android:textColorHint="@color/black"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -140,7 +136,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
 
-                    android:hint="Heure de début"
+                    android:hint="@string/time_start_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
@@ -156,7 +152,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/date_time_start_layout"
                 android:background="@color/white"
-                android:text="Fin"
+                android:text="@string/end_date_textview"
                 android:paddingStart="5dp"
                 android:paddingTop="5dp"
                 android:layout_marginTop="5dp">
@@ -175,7 +171,7 @@
                     android:id="@+id/date_btn_end"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:hint="Date de fin"
+                    android:hint="@string/date_end_text"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".50"
@@ -191,7 +187,7 @@
                     android:id="@+id/time_btn_end"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:hint="Heure de fin"
+                    android:hint="@string/time_end_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
@@ -208,7 +204,7 @@
                 android:id="@+id/room_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Choisir une salle"
+                android:hint="@string/room_spinner_hint"
                 android:layout_marginTop="10dp"
 
 
@@ -229,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Confirmer"
+            android:text="@string/meeting_create_confirm_btn"
             android:textColor="@color/white"
             app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -237,7 +233,6 @@
             app:layout_constraintTop_toBottomOf="@+id/room_spinner"
             app:layout_constraintBottom_toBottomOf="parent"
             android:backgroundTint="@color/red_btn"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

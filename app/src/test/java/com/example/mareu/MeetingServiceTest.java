@@ -14,11 +14,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
@@ -63,7 +62,7 @@ public class MeetingServiceTest {
         List<Meeting> meetings = service.getMeetings();
         String filterType = "room";
         String filterText = "Room 1";
-        List<Meeting> expectedMeetings = new ArrayList<>(Arrays.asList(meetings.get(0)));
+        List<Meeting> expectedMeetings = new ArrayList<>(Collections.singletonList(meetings.get(0)));
         service.filterMeetings(filterText,filterType);
         List<Meeting> actualMeetings = service.getMeetingsDisplayed();
         assertThat(actualMeetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));
@@ -77,14 +76,14 @@ public class MeetingServiceTest {
         endDate.set(2021,11,12);
         Meeting newMeeting = new Meeting(RoomsGenerator.ROOMS.get(0),
                 new User("Manu","manu.james@gmail.fr"),
-                Arrays.asList(new User("Manu","manu.James@gmail.fr")),
+                Collections.singletonList(new User("Manu", "manu.James@gmail.fr")),
                 startDate,
                 endDate,
                 "My meeting");
         service.createMeeting(newMeeting);
         String filterType = "date";
         String filterText = "12/12/21";
-        List<Meeting> expectedMeetings = new ArrayList<>(Arrays.asList(newMeeting));
+        List<Meeting> expectedMeetings = new ArrayList<>(Collections.singletonList(newMeeting));
         service.filterMeetings(filterText,filterType);
         List<Meeting> actualMeetings = service.getMeetingsDisplayed();
         assertThat(actualMeetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));

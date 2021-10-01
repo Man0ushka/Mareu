@@ -1,18 +1,16 @@
 package com.example.mareu.events;
 
-import android.widget.DatePicker;
-
 public class SetMeetingDateEvent {
     String tag;
     int year;
     int month;
     int dayOfMonth;
-    public SetMeetingDateEvent(String tag, int year, int month, int dayOfMonth)
-    {
-        this.tag=tag;
-        this.year=year;
-        this.month=month;
-        this.dayOfMonth=dayOfMonth;
+
+    public SetMeetingDateEvent(String tag, int year, int month, int dayOfMonth) {
+        this.tag = tag;
+        this.year = year;
+        this.month = month;
+        this.dayOfMonth = dayOfMonth;
     }
 
     public int getDayOfMonth() {

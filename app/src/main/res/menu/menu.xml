@@ -2,48 +2,46 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
-
     <item android:id="@+id/filter_reset"
-        android:title="Reset filter"
+        android:title="@string/reset_filter_title"
         app:showAsAction="never"/>
     <item android:id="@+id/filter_date"
-        android:title="Filter by date"
+        android:title="@string/filter_by_date_title"
         app:showAsAction="never" />
     <item android:id="@+id/filter_room"
-        android:title="Filter by room"
+        android:title="@string/filter_by_room_title"
         app:showAsAction="never">
         <group android:checkableBehavior="single">
             <menu>
                 <item android:id="@+id/room_1"
                     android:tag="Room 1"
-                    android:title="Room 1"/>
+                    android:title="@string/room_name_1"/>
                 <item android:id="@+id/room_2"
                     android:tag="Room 2"
-                    android:title="Room 2"/>
+                    android:title="@string/room_name_2"/>
                 <item android:id="@+id/room_3"
                     android:tag="Room 3"
-                    android:title="Room 3"/>
+                    android:title="@string/room_name_3"/>
                 <item android:id="@+id/room_4"
                     android:tag="Room 4"
-                    android:title="Room 4"/>
+                    android:title="@string/room_name_4"/>
                 <item android:id="@+id/room_5"
                     android:tag="Room 5"
-                    android:title="Room 5"/>
+                    android:title="@string/room_name_5"/>
                 <item android:id="@+id/room_6"
-                    android:title="Room 6"
+                    android:title="@string/room_name_6"
                     android:tag="Room 6"/>
                 <item android:id="@+id/room_7"
-                    android:title="Room 7"
+                    android:title="@string/room_name_7"
                     android:tag="Room 7"/>
                 <item android:id="@+id/room_8"
-                    android:title="Room 8"
+                    android:title="@string/room_name_8"
                     android:tag="Room 8"/>
                 <item android:id="@+id/room_9"
-                    android:title="Room 9"
+                    android:title="@string/room_name_9"
                     android:tag="Room 9"/>
                 <item android:id="@+id/room_10"
-                    android:title="Room 10"
+                    android:title="@string/room_name_10"
                     android:tag="Room 10"/>
             </menu>
         </group>

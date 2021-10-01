@@ -2,15 +2,14 @@ package com.example.mareu.view.list_meetings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.mareu.DI.ServiceDI;
 import com.example.mareu.R;
@@ -27,19 +26,11 @@ import java.util.List;
  * A fragment representing a list of Items.
  */
 public class MeetingFragment extends Fragment {
-    private List<Meeting> mMeetingsListFiltered;
+    private static final String ARG_COLUMN_COUNT = "column-count";
     private IMeetingsApiService mMeetingsApiService;
     private RecyclerView mRecyclerView;
     private MyMeetingRecyclerViewAdapter myMeetingRecyclerViewAdapter;
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
-
-    public MyMeetingRecyclerViewAdapter getMyMeetingRecyclerViewAdapter() {
-        return myMeetingRecyclerViewAdapter;
-    }
-
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -55,6 +46,10 @@ public class MeetingFragment extends Fragment {
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public MyMeetingRecyclerViewAdapter getMyMeetingRecyclerViewAdapter() {
+        return myMeetingRecyclerViewAdapter;
     }
 
     @Override
@@ -85,14 +80,15 @@ public class MeetingFragment extends Fragment {
         }
         return view;
     }
-    public void initList()
-    {
 
-        mMeetingsListFiltered = mMeetingsApiService.getMeetingsDisplayed();
+    public void initList() {
 
-        myMeetingRecyclerViewAdapter = new MyMeetingRecyclerViewAdapter(mMeetingsListFiltered);
+        List<Meeting> mMeetingsListDisplayed = mMeetingsApiService.getMeetingsDisplayed();
+
+        myMeetingRecyclerViewAdapter = new MyMeetingRecyclerViewAdapter(mMeetingsListDisplayed);
         mRecyclerView.setAdapter(myMeetingRecyclerViewAdapter);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -114,10 +110,9 @@ public class MeetingFragment extends Fragment {
     }
 
     @Subscribe
-    public void OnDeleteMeeting(DeleteMeetingEvent event)
-    {
-            mMeetingsApiService.deleteMeeting(event.getMeeting());
-            initList();
+    public void OnDeleteMeeting(DeleteMeetingEvent event) {
+        mMeetingsApiService.deleteMeeting(event.getMeeting());
+        initList();
     }
 
 }

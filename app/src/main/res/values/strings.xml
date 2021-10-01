@@ -2,4 +2,29 @@
     <string name="app_name">Mareu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_meeting">Ajouter une réunion</string>
+    <string name="meeting_subject_text">Sujet de la réunion</string>
+    <string name="inviter_des_participants">Inviter des participants</string>
+    <string name="debut_date_textview">Début</string>
+    <string name="date_start_text">Date de début</string>
+    <string name="time_start_text">Heure de début</string>
+    <string name="end_date_textview">Fin</string>
+    <string name="date_end_text">Date de fin</string>
+    <string name="time_end_text">Heure de fin</string>
+    <string name="room_spinner_hint">Choisir une salle</string>
+    <string name="meeting_create_confirm_btn">Confirmer</string>
+    <string name="remove_meeting">Remove meeting</string>
+    <string name="reset_filter_title">Reset filter</string>
+    <string name="filter_by_date_title">Filter by date</string>
+    <string name="filter_by_room_title">Filter by room</string>
+    <string name="room_name_1">Room 1</string>
+    <string name="room_name_2">Room 2</string>
+    <string name="room_name_3">Room 3</string>
+    <string name="room_name_4">Room 4</string>
+    <string name="room_name_5">Room 5</string>
+    <string name="room_name_6">Room 6</string>
+    <string name="room_name_7">Room 7</string>
+    <string name="room_name_8">Room 8</string>
+    <string name="room_name_9">Room 9</string>
+    <string name="room_name_10">Room 10</string>
 </resources>

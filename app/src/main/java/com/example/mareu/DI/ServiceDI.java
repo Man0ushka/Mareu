@@ -6,13 +6,11 @@ import com.example.mareu.service.meetings.MeetingsApiService;
 public class ServiceDI {
     public static IMeetingsApiService meetingsApiService = new MeetingsApiService();
 
-    public static IMeetingsApiService getMeetingsApiService()
-    {
+    public static IMeetingsApiService getMeetingsApiService() {
         return meetingsApiService;
     }
 
-    public static IMeetingsApiService getNewInstanceMeetingsApiService()
-    {
+    public static IMeetingsApiService getNewInstanceMeetingsApiService() {
         meetingsApiService = new MeetingsApiService();
         return meetingsApiService;
     }

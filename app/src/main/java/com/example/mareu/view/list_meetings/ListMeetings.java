@@ -1,22 +1,20 @@
 package com.example.mareu.view.list_meetings;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mareu.DI.ServiceDI;
 import com.example.mareu.R;
-import com.example.mareu.view.add_meeting.AddMeeting;
 import com.example.mareu.events.SetMeetingDateEvent;
 import com.example.mareu.service.meetings.IMeetingsApiService;
+import com.example.mareu.view.add_meeting.AddMeeting;
 import com.example.mareu.view.calendar.DatePickerFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,6 +24,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class ListMeetings extends AppCompatActivity {
 
@@ -33,6 +32,7 @@ public class ListMeetings extends AppCompatActivity {
     MyMeetingRecyclerViewAdapter adapter;
     MeetingFragment fragment;
     IMeetingsApiService mMeetingsApiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,19 +43,11 @@ public class ListMeetings extends AppCompatActivity {
         mMeetingsApiService = ServiceDI.getMeetingsApiService();
 
 
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         fragment = MeetingFragment.newInstance(1);
         transaction.replace(R.id.sample_content_fragment, fragment);
         transaction.commit();
-
-        mAddMeetingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddMeeting.navigate(ListMeetings.this);
-            }
-        });
-
+        mAddMeetingBtn.setOnClickListener(v -> AddMeeting.navigate(ListMeetings.this));
     }
 
     @Override
@@ -65,6 +57,7 @@ public class ListMeetings extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -74,7 +67,6 @@ public class ListMeetings extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
-
     }
 
     @Override
@@ -82,43 +74,39 @@ public class ListMeetings extends AppCompatActivity {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
+
     @Subscribe
-    public void onDateSetMeetingEvent(SetMeetingDateEvent event)
-    {
+    public void onDateSetMeetingEvent(SetMeetingDateEvent event) {
         int year = event.getYear();
         int month = event.getMonth();
         int day = event.getDayOfMonth();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.set(year,month,day);
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
-        mMeetingsApiService.filterMeetings(dateFormat.format(gregorianCalendar.getTime()),"date");
-        adapter= fragment.getMyMeetingRecyclerViewAdapter();
+        gregorianCalendar.set(year, month, day);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
+        mMeetingsApiService.filterMeetings(dateFormat.format(gregorianCalendar.getTime()), "date");
+        adapter = fragment.getMyMeetingRecyclerViewAdapter();
         adapter.notifyDataSetChanged();
-        setTitle("Ma réu - "+dateFormat.format(gregorianCalendar.getTime()));
+        setTitle("Ma réu - " + dateFormat.format(gregorianCalendar.getTime()));
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        adapter= fragment.getMyMeetingRecyclerViewAdapter();
-        if(item.getItemId()!=R.id.filter_date && item.getItemId()!=R.id.filter_reset && item.getItemId()!=R.id.filter_room)
-        {
-            mMeetingsApiService.filterMeetings((String) item.getTitle(),"room");
+        adapter = fragment.getMyMeetingRecyclerViewAdapter();
+        if (item.getItemId() != R.id.filter_date && item.getItemId() != R.id.filter_reset && item.getItemId() != R.id.filter_room) {
+            mMeetingsApiService.filterMeetings((String) item.getTitle(), "room");
             adapter.notifyDataSetChanged();
-            setTitle("Ma réu - "+item.getTitle());
+            setTitle("Ma réu - " + item.getTitle());
         }
-        switch(item.getItemId())
-        {
-            case R.id.filter_date:
-            {
+        switch (item.getItemId()) {
+            case R.id.filter_date: {
                 DialogFragment newFragment = new DatePickerFragment("filterDate");
                 newFragment.show(getSupportFragmentManager(), "filterDate");
                 break;
             }
 
 
-            case R.id.filter_reset:
-            {
-                mMeetingsApiService.filterMeetings("","");
+            case R.id.filter_reset: {
+                mMeetingsApiService.filterMeetings("", "");
                 adapter.notifyDataSetChanged();
                 setTitle("Ma réu");
                 break;
